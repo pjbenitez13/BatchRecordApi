@@ -22,4 +22,15 @@ public class UsersGetterLogic(BatchRecordContext db)
         return await dbContext.Users.Where(r => !r.Deleted && (roleId == null || r.RoleId == roleId))
                                     .CountAsync();
     }
+
+    public async Task<User> GetUserById(long userId)
+    {
+        var user = await dbContext.Users.Where(r => !r.Deleted && r.IdUser == userId)
+                                        .FirstOrDefaultAsync();
+
+        if (user == null)
+           throw new InvalidOperationException("Usuario no encontrado");
+
+        return user;
+    }
 }

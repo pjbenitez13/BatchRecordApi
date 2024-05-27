@@ -1,14 +1,12 @@
 ﻿using BatchRecordApi.Bases;
 using BatchRecordDAL.Models;
-using System.ComponentModel.DataAnnotations;
 
-namespace BatchRecordApi.ResponseModels.Users;
-
+namespace BatchRecordApi.ResponseModels.AccessResources;
 
 /// <summary>
-/// Respuesta para Usuarios Devs
+/// Respuesta para Recursos Devs
 /// </summary>
-public class CreateUsersReponse : IBaseResponse, IPaginatedResponse
+public class CreateAccessResourcesResponse : IBaseResponse, IPaginatedResponse
 {
     /// <summary>
     /// Mensaje de respuesta
@@ -36,20 +34,20 @@ public class CreateUsersReponse : IBaseResponse, IPaginatedResponse
     public long TotalItems { get; set; }
 
     /// <summary>
-    /// Salida de Usuarios de la clase
+    /// Salida de Recursos de la clase
     /// </summary>
-    public IEnumerable<UserOuput>? Users { get; set; }
+    public IEnumerable<AccessResourceOutput>? AccessResources { get; set; }
 
     /// <summary>
-    /// Constructor de Usuarios
+    /// Constructor de Recursos
     /// </summary>
-    public CreateUsersReponse(IList<User> users, int itemsPerPage, int pageNumber, int totalItems) 
+    public CreateAccessResourcesResponse(IList<AccessResource> accessResources, int itemsPerPage, int pageNumber, int totalItems)
     {
-        Users = users.Select(u => new UserOuput(u));
-        Message = "Usuarios obtenidos con exito";
+        AccessResources = accessResources.Select(u => new AccessResourceOutput(u));
+        Message = "Recursos obtenidos con exito";
         Success = true;
         ItemsPerPage = itemsPerPage;
         PageNumber = pageNumber;
-        TotalItems = totalItems;  
+        TotalItems = totalItems;
     }
 }

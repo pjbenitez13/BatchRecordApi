@@ -1,10 +1,5 @@
 ﻿using BatchRecordDAL.Bases;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BatchRecordDAL.Models
 {
@@ -28,6 +23,18 @@ namespace BatchRecordDAL.Models
         /// </summary>
         [Required]
         public string SurName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Usuario para Login
+        /// </summary>
+        [Required]
+        public string UserName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Contraseña
+        /// </summary>
+        [Required]
+        public string Password { get; set; } = string.Empty;
 
         /// <summary>
         /// Correo Electronico

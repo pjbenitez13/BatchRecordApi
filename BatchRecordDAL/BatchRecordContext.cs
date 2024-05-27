@@ -1,8 +1,5 @@
 ﻿using BatchRecordDAL.Models;
 using Microsoft.EntityFrameworkCore;
-using Npgsql.EntityFrameworkCore.PostgreSQL;
-using System.Runtime.InteropServices.JavaScript;
-using System.Xml.Linq;
 namespace BatchRecordDAL
 {
 
@@ -10,7 +7,7 @@ namespace BatchRecordDAL
     {
         private readonly string _connection;
         private static readonly string Migrations = "_ef_migrations";
-        private static readonly string Schema = "test";
+        private static readonly string Schema = "farmazona";
 
         public BatchRecordContext(
             string? dbName = null,
@@ -20,10 +17,18 @@ namespace BatchRecordDAL
             string? dbPort = null) : base()
         {
 
-            if (string.IsNullOrEmpty(dbName)) dbName = "BatchRecord";
-            if (string.IsNullOrEmpty(dbHost)) dbHost = "localhost";
-            if (string.IsNullOrEmpty(dbUser)) dbUser = "postgres";
-            if (string.IsNullOrEmpty(dbPassword)) dbPassword = "1234";
+            //if (string.IsNullOrEmpty(dbName)) dbName = "BatchRecord";
+            //if (string.IsNullOrEmpty(dbHost)) dbHost = "localhost";
+            //if (string.IsNullOrEmpty(dbUser)) dbUser = "postgres";
+            //if (string.IsNullOrEmpty(dbPassword)) dbPassword = "1234";
+            //if (string.IsNullOrEmpty(dbPort)) dbPort = "5432";
+
+            //server = 209.145.57.25:5432; user id = farmazona; password = Librefh95747_; database = farmazona;
+
+            if (string.IsNullOrEmpty(dbName)) dbName = "farmazona";
+            if (string.IsNullOrEmpty(dbHost)) dbHost = "209.145.57.25";
+            if (string.IsNullOrEmpty(dbUser)) dbUser = "farmazona";
+            if (string.IsNullOrEmpty(dbPassword)) dbPassword = "Librefh95747_";
             if (string.IsNullOrEmpty(dbPort)) dbPort = "5432";
 
             _connection = $"Host={dbHost};PORT={dbPort};Database={dbName};Username={dbUser};Password={dbPassword};Pooling=False";
@@ -55,6 +60,10 @@ namespace BatchRecordDAL
                         .IsUnique();
 
             modelBuilder.Entity<User>()
+                        .HasIndex(u => u.UserName)
+                        .IsUnique();
+
+            modelBuilder.Entity<User>()
                         .HasOne(ba => ba.Role)
                         .WithMany(b => b.Users)
                         .HasForeignKey(ba => ba.RoleId);
@@ -62,6 +71,10 @@ namespace BatchRecordDAL
             // Role
             modelBuilder.Entity<Role>()
                         .HasKey(u => u.RoleId);
+
+            modelBuilder.Entity<Role>()
+                        .HasIndex(u => u.RoleName)
+                        .IsUnique();
 
             // AccessResources
 

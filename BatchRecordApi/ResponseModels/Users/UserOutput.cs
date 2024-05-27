@@ -23,6 +23,16 @@ namespace BatchRecordApi.ResponseModels.Users
         public string SurName { get; set; } = user.SurName;
 
         /// <summary>
+        /// Usuario para Login
+        /// </summary>
+        public string UserName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Contraseña
+        /// </summary>
+        public string Password { get; set; } = string.Empty;
+
+        /// <summary>
         /// Correo Electronico
         /// </summary>
         public string Email { get; set; } = user.Email;
@@ -31,11 +41,6 @@ namespace BatchRecordApi.ResponseModels.Users
         /// Id del Rol del Usuario
         /// </summary>
         public long RoleId { get; set; } = user.RoleId;
-
-        /// <summary>
-        /// Rol del Usuario
-        /// </summary>
-        public Role? Role { get; set; } = user.Role;
 
         /// <summary>
         /// Enums para tipos de Usuarios

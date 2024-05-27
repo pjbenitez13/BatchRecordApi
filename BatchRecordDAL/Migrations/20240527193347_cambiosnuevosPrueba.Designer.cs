@@ -3,6 +3,7 @@ using System;
 using BatchRecordDAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BatchRecordDAL.Migrations
 {
     [DbContext(typeof(BatchRecordContext))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240527193347_cambiosnuevosPrueba")]
+    partial class cambiosnuevosPrueba
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
